@@ -5,6 +5,7 @@
 package mysketch;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  *
@@ -14,9 +15,14 @@ public class Sketch extends PApplet {
     private Character c1;
     private Character c2;
     private Animal a;
+    private PImage bg;
+    private PImage menu;
     int stage = 0;
+    private boolean showInfo = false;
     
     public void settings(){
+        bg = loadImage("images/background.jpg");
+        menu = loadImage("images/menu.jpg");
         size(600, 350);
     }
     
@@ -25,18 +31,25 @@ public class Sketch extends PApplet {
         background(216, 220, 230);
         textSize(15);
         
-        a = new Animal(this, 0, 200, "Rabbit", "Spawn", "images/rabbit.png");
-        c1 = new Human(this, 0, 200, "Chang'e", "Spawn", a, "images/chang-e.png");
+        a = new Animal(this, 50, 200, "Rabbit", "Spawn", "images/rabbit.png");
+        c1 = new Human(this, 300, 200, "Chang'e", "Spawn", a, "images/chang-e.png");
     }
     
     public void draw(){
         if (stage == 0) {
-            fill(0);
+            image(menu, 0, 0, width, height);
             text("Main Menu", 20, 50);
             text("Press 'Enter' to Proceed", 20, 80);
         } else if (stage == 1) {
             background(216, 220, 230);
+            image(bg, 0, 0, width, height);
+            a.draw();
             c1.draw();
+            if (c1.isCollidingWith(a)) {
+                this.text("Press 'E' to interact", a.x, a.y);
+            }
+            text("Use arrow keys keys to move character", 20, 50);
+            text("Use WASD keys to move rabbit", 20, 80);
         
         if (keyPressed) {
             if (keyCode == LEFT) {
@@ -47,11 +60,19 @@ public class Sketch extends PApplet {
                 c1.move(0, -5);
             } else if (keyCode == DOWN) {
                 c1.move(0, 5);
+            } else if (key == 'a' || key == 'A') {
+                a.move(-5, 0);
+            } else if (key == 'd' || key == 'D') {
+                a.move(5, 0);
+            } else if (key == 'w' || key == 'W') {
+                a.move(0, -5);
+            } else if (key == 's' || key == 'S') {
+                a.move(0, 5);
             }
         }
         }
     }
-    
+
     public void keyPressed() {
         if (stage == 0) {
             if (keyCode == ENTER) {

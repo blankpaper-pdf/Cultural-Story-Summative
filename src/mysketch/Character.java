@@ -13,7 +13,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Character {
-    private int x, y; // position of the person
+    public int x, y; // position of the person
     private String name; // name of person
     private PImage image; // image of the person
     private PApplet app; // the canvas used to display graphical elements
@@ -33,5 +33,14 @@ public class Character {
     
     public void draw() {
         app.image(image, x, y);
+    }
+    
+    public boolean isCollidingWith(Character other) {
+        int centerX = x+(image.pixelWidth/2);
+        int centerY = y+(image.pixelWidth/2);
+        int otherCenterX = other.x+(other.image.pixelWidth/2);
+        int otherCenterY = other.y+(other.image.pixelHeight/2);
+        float d = PApplet.dist(otherCenterX, otherCenterY, centerX, centerY);
+        return d < 32;
     }
 }
