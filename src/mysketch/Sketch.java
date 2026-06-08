@@ -16,12 +16,14 @@ public class Sketch extends PApplet {
     private Character c2;
     private Animal a;
     private PImage bg;
+    private PImage bg1;
     private PImage menu;
     int stage = 0;
     private boolean showInfo = false;
     
     public void settings(){
         bg = loadImage("images/background.jpg");
+        bg1 = loadImage("images/background1.png");
         menu = loadImage("images/menu.jpg");
         size(600, 350);
     }
@@ -47,36 +49,36 @@ public class Sketch extends PApplet {
             a.draw();
             c2.draw();
             c1.draw();
+            fill(255);
+            text("Use arrow keys keys to move character", 20, 25);
             if (c1.isCollidingWith(a)) {
                 fill(255);
-                this.text("Press 'E' to interact", a.x, a.y);
-                if (keyPressed) {
-                    if (key == 'e' || key == 'E') {
+//                this.text("Hold 'E' to interact", a.x, a.y);
+//                if (keyPressed) {
+//                    if (key == 'e' || key == 'E') {
                         strokeWeight(1);
                         stroke(255);
                         fill(0);
                         rect(0, 300, width-1, 50);
                         fill(255);
-                        text("[intelligible bunny noises ... what could it be trying to communicate]", 5, 330);
-                    }
-                }
+                        text("White Rabbit: [intelligible bunny noises]", 5, 330);
+//                    }
+//                }
             }
             if (c1.isCollidingWith(c2)) {
                 fill(255);
-                this.text("Press 'E' to interact", c2.x, c2.y);
-                if (keyPressed) {
-                    if (key == 'e' || key == 'E') {
+//                this.text("Hold 'E' to interact", c2.x, c2.y);
+//                if (keyPressed) {
+//                    if (key == 'e' || key == 'E') {
                         strokeWeight(1);
                         stroke(255);
                         fill(0);
                         rect(0, 300, width-1, 50);
                         fill(255);
-                        text("Greetings Chang'e. The Emperor summoned ... [idk]", 5, 330);
-                    }
-                }
-            }
-            fill(255);
-            text("Use arrow keys keys to move character", 20, 50);
+                        text("Houyi: Greetings Chang'e. The Emperor has summoned my presence", 5, 330);
+//                    }
+//                }
+            } 
         
         if (keyPressed) {
             if (keyCode == LEFT) {
@@ -97,6 +99,21 @@ public class Sketch extends PApplet {
 //                a.move(0, 5);
             }
         }
+        } else if (stage == 2) {
+            image(bg1, 0, 0, width, height);
+            c2.draw();
+            
+            if (keyPressed) {
+                if (keyCode == LEFT) {
+                    c2.move(-3, 0);
+                } else if (keyCode == RIGHT) {
+                    c2.move(3, 0);
+                } else if (keyCode == UP) {
+                    c2.move(0, -3);
+                } else if (keyCode == DOWN) {
+                    c2.move(0, 3);
+                }
+            }
         }
     }
 
@@ -105,6 +122,11 @@ public class Sketch extends PApplet {
             if (keyCode == ENTER) {
                 // proceed to next stage
                 stage = 1;
+            }
+        } else if (stage == 1) {
+            if (keyCode == ENTER) {
+                // proceed to next stage
+                stage = 2;
             }
         }
     }
