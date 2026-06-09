@@ -20,4 +20,12 @@ public class Human extends Character {
         this.ability = ability;
         this.pet = pet;
     }
+    
+    public void ability() {
+        if (ability.equals("moon")) {
+            System.out.println("placeholder");
+        } else if (ability.equals("bow")) {
+            System.out.println("placeholder");
+        }
+    }
 }

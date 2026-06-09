@@ -18,4 +18,8 @@ public class Animal extends Character {
         super(p, x, y, name, imagePath);
         this.species = species;
     }
+    
+    public void ability() {
+        
+    }
 }

@@ -18,7 +18,7 @@ public class Sketch extends PApplet {
     private PImage bg;
     private PImage bg1;
     private PImage menu;
-    int stage = 0;
+    static int stage = 0;
     private boolean showInfo = false;
     
     public void settings(){
@@ -38,11 +38,21 @@ public class Sketch extends PApplet {
         c2 = new Human(this, 400, 200, "Houyi", "Spawn", a, "images/houyi.png");
     }
     
+    public void msg(String select) {
+        if (select.equals("proceed")) {
+            text("Press 'Enter' to Proceed", 20, 80);
+        } else if (select.equals("controls")) {
+            text("Use arrow keys keys to move character", 20, 25);
+        }
+    }
+    
     public void draw(){
         if (stage == 0) {
+            System.out.println("Begin: Stage 1");
+            
             image(menu, 0, 0, width, height);
             text("Main Menu", 20, 50);
-            text("Press 'Enter' to Proceed", 20, 80);
+            msg("proceed");
         } else if (stage == 1) {
             background(216, 220, 230);
             image(bg, 0, 0, width, height);
@@ -50,10 +60,10 @@ public class Sketch extends PApplet {
             c2.draw();
             c1.draw();
             fill(255);
-            text("Use arrow keys keys to move character", 20, 25);
+            msg("controls");
             if (c1.isCollidingWith(a)) {
                 fill(255);
-//                this.text("Hold 'E' to interact", a.x, a.y);
+                this.text("White Rabbit (pet)", a.x, a.y);
 //                if (keyPressed) {
 //                    if (key == 'e' || key == 'E') {
                         strokeWeight(1);
@@ -67,7 +77,7 @@ public class Sketch extends PApplet {
             }
             if (c1.isCollidingWith(c2)) {
                 fill(255);
-//                this.text("Hold 'E' to interact", c2.x, c2.y);
+                this.text("Houyi (husband)", c2.x, c2.y);
 //                if (keyPressed) {
 //                    if (key == 'e' || key == 'E') {
                         strokeWeight(1);
@@ -75,7 +85,7 @@ public class Sketch extends PApplet {
                         fill(0);
                         rect(0, 300, width-1, 50);
                         fill(255);
-                        text("Houyi: Greetings Chang'e. The Emperor has summoned my presence", 5, 330);
+                        text("Houyi: Greetings Chang'e. The Emperor has requested for my presence.", 5, 330);
 //                    }
 //                }
             } 
@@ -83,12 +93,16 @@ public class Sketch extends PApplet {
         if (keyPressed) {
             if (keyCode == LEFT) {
                 c1.move(-3, 0);
+                c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e_L.png");
             } else if (keyCode == RIGHT) {
                 c1.move(3, 0);
+                c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e_R.png");
             } else if (keyCode == UP) {
                 c1.move(0, -3);
+                c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e.png");
             } else if (keyCode == DOWN) {
                 c1.move(0, 3);
+                c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e.png");
 //            } else if (key == 'a' || key == 'A') {
 //                a.move(-5, 0);
 //            } else if (key == 'd' || key == 'D') {
@@ -100,9 +114,11 @@ public class Sketch extends PApplet {
             }
         }
         } else if (stage == 2) {
+            System.out.println("Begin: Stage 2");
+            
             image(bg1, 0, 0, width, height);
             c2.draw();
-            
+            msg("controls");
             if (keyPressed) {
                 if (keyCode == LEFT) {
                     c2.move(-3, 0);
