@@ -14,6 +14,7 @@ import processing.core.PImage;
 public class Sketch extends PApplet {
     private Character c1;
     private Character c2;
+    private Character c3;
     private Animal a;
     private PImage bg;
     private PImage bg1;
@@ -23,7 +24,7 @@ public class Sketch extends PApplet {
     
     public void settings(){
         bg = loadImage("images/background.jpg");
-        bg1 = loadImage("images/background1.png");
+        bg1 = loadImage("images/background1.jpg");
         menu = loadImage("images/menu.jpg");
         size(600, 350);
     }
@@ -48,8 +49,6 @@ public class Sketch extends PApplet {
     
     public void draw(){
         if (stage == 0) {
-            System.out.println("Begin: Stage 1");
-            
             image(menu, 0, 0, width, height);
             text("Main Menu", 20, 50);
             msg("proceed");
@@ -114,22 +113,36 @@ public class Sketch extends PApplet {
             }
         }
         } else if (stage == 2) {
-            System.out.println("Begin: Stage 2");
-            
             image(bg1, 0, 0, width, height);
-            c2.draw();
-            msg("controls");
-            if (keyPressed) {
-                if (keyCode == LEFT) {
-                    c2.move(-3, 0);
-                } else if (keyCode == RIGHT) {
-                    c2.move(3, 0);
-                } else if (keyCode == UP) {
-                    c2.move(0, -3);
-                } else if (keyCode == DOWN) {
-                    c2.move(0, 3);
-                }
+            int [] s2_dialogue = new int [6];
+            int count = 0;
+            strokeWeight(1);
+            stroke(255);
+            fill(0);
+            rect(0, 270, width-1, 80);
+            fill(255);
+            text("Emperor: Houyi, as you know, the heat of the 10 suns have "
+                    + "become increasingly unbearable.", 5, 300);
+            text("                     A great archer such as yourself must "
+                    + "understand the threat it serves to humanity.", 5, 330);
+            while (count >= s2_dialogue.length) {
+                // play cutscene
+                // enter to continue to next stage
             }
+        } else if (stage == 3) {
+            // sun shooting minigame
+            // reward drops, 'elixir of immortality'
+        } else if (stage == 4) {
+            // chang'e at home, activate ability
+            // trying to find lost object
+            // acccidentally stumbles upon elixir
+        } else if (stage == 5) {
+            // float up while dodging obstacles
+        } else if (stage == 6) {
+            // play as random kid setting up lantern
+            // end by dialogue w/ houyi
+        } else if (stage == 7) {
+            // end 'credits' game complete
         }
     }
 

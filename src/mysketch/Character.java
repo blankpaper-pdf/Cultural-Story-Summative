@@ -18,6 +18,10 @@ public class Character {
     private PImage image; // image of the person
     private PApplet app; // the canvas used to display graphical elements
     
+    public Character() {
+        this.name = "null";
+    }
+    
     public Character(PApplet p, int x, int y, String name, String imagePath) {
         this.app = p;
         this.x = x;
