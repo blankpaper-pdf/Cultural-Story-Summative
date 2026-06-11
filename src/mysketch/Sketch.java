@@ -14,7 +14,6 @@ import processing.core.PImage;
 public class Sketch extends PApplet {
     private Character c1;
     private Character c2;
-    private Character c3;
     private Animal a;
     private PImage bg;
     private PImage bg1;
@@ -24,7 +23,7 @@ public class Sketch extends PApplet {
     
     public void settings(){
         bg = loadImage("images/background.jpg");
-        bg1 = loadImage("images/background1.jpg");
+        bg1 = loadImage("images/background1.png");
         menu = loadImage("images/menu.jpg");
         size(600, 350);
     }
@@ -156,6 +155,31 @@ public class Sketch extends PApplet {
             if (keyCode == ENTER) {
                 // proceed to next stage
                 stage = 2;
+            }
+        } else if (stage == 2) {
+            if (keyCode == ENTER) {
+                // proceed to next stage
+                stage = 3;
+            }
+        } else if (stage == 3) {
+            if (keyCode == ENTER) {
+                // proceed to next stage
+                stage = 4;
+            }
+        } else if (stage == 4) {
+            if (keyCode == ENTER) {
+                // proceed to next stage
+                stage = 5;
+            }
+        } else if (stage == 5) {
+            if (keyCode == ENTER) {
+                // proceed to next stage
+                stage = 6;
+            }
+        } else if (stage == 6) {
+            if (keyCode == ENTER) {
+                // proceed to next stage
+                stage = 7;
             }
         }
     }
