@@ -86,7 +86,7 @@ public class Sketch extends PApplet {
                         text("Houyi: Greetings Chang'e. The Emperor has requested for my presence.", 5, 330);
 //                    }
 //                }
-            } 
+            }
         
         if (keyPressed) {
             if (keyCode == LEFT) {
@@ -97,29 +97,32 @@ public class Sketch extends PApplet {
                 c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e_R.png");
             } else if (keyCode == UP) {
                 c1.move(0, -3);
-                c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e.png");
+                c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e_B.png");
             } else if (keyCode == DOWN) {
                 c1.move(0, 3);
                 c1 = new Human(this, c1.x, c1.y, "Chang'e", "Spawn", a, "images/chang-e.png");
 //            } else if (key == 'a' || key == 'A') {
-//                a.move(-5, 0);
+//                c1.move(-3, 0);
 //            } else if (key == 'd' || key == 'D') {
-//                a.move(5, 0);
+//                c1.move(3, 0);
 //            } else if (key == 'w' || key == 'W') {
-//                a.move(0, -5);
+//                c1.move(0, -3);
 //            } else if (key == 's' || key == 'S') {
-//                a.move(0, 5);
+//                c1.move(0, 3);
             }
         }
         } else if (stage == 2) {
             image(bg1, 0, 0, width, height);
             int [] s2_dialogue = new int [6];
             int count = 0;
+            c2.draw();
+            // create dialogue box
             strokeWeight(1);
             stroke(255);
             fill(0);
             rect(0, 270, width-1, 80);
             fill(255);
+            // display dialogue
             text("Emperor: Houyi, as you know, the heat of the 10 suns have "
                     + "become increasingly unbearable.", 5, 300);
             text("                     A great archer such as yourself must "
@@ -127,6 +130,21 @@ public class Sketch extends PApplet {
             while (count >= s2_dialogue.length) {
                 // play cutscene
                 // enter to continue to next stage
+            }
+            if (keyPressed) {
+                if (keyCode == LEFT) {
+                    c2.move(-3, 0);
+                    c2 = new Human(this, c2.x, c2.y, "Houyi", "Spawn", a, "images/houyi_L.png");
+                } else if (keyCode == RIGHT) {
+                    c2.move(3, 0);
+                    c2 = new Human(this, c2.x, c2.y, "Houyi", "Spawn", a, "images/houyi_R.png");
+                } else if (keyCode == UP) {
+                    c2.move(0, -3);
+                    c2 = new Human(this, c2.x, c2.y, "Houyi", "Spawn", a, "images/houyi_B.png");
+                } else if (keyCode == DOWN) {
+                    c2.move(0, 3);
+                    c2 = new Human(this, c2.x, c2.y, "Houyi", "Spawn", a, "images/houyi.png");
+                }
             }
         } else if (stage == 3) {
             // sun shooting minigame

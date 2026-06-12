@@ -17,6 +17,6 @@ public class NPC extends Character {
     }
     
     public void move() {
-        // override
+        // override to cancel movement capability
     }
 }

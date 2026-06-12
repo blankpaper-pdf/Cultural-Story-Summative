@@ -23,9 +23,9 @@ public class Human extends Character {
     
     public void ability() {
         if (ability.equals("moon")) {
-            System.out.println("placeholder");
+            System.out.println("ability activated");
         } else if (ability.equals("bow")) {
-            System.out.println("placeholder");
+            System.out.println("ability activated");
         }
     }
 }
